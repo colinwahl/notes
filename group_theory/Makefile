@@ -9,6 +9,7 @@
 
 # Convert all files in this directory that have a .md suffix
 SOURCE_DOCS := $(wildcard *.md)
+SOURCE_DOCS := $(filter-out README.md, $(SOURCE_DOCS))
 
 EXPORTED_DOCS=\
  $(SOURCE_DOCS:.md=.pdf) \
@@ -38,7 +39,7 @@ PANDOC_EPUB_OPTIONS=--to epub3
 	$(PANDOC) $(PANDOC_OPTIONS) $(PANDOC_HTML_OPTIONS) -o $@ $<
 
 %.pdf : %.md
-	$(PANDOC) $(PANDOC_OPTIONS) $(PANDOC_PDF_OPTIONS) -o $@ markdown/$<
+	$(PANDOC) $(PANDOC_OPTIONS) $(PANDOC_PDF_OPTIONS) -o $@ $<
 
 %.docx : %.md
 	$(PANDOC) $(PANDOC_OPTIONS) $(PANDOC_DOCX_OPTIONS) -o $@ $<

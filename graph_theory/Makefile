@@ -9,6 +9,7 @@
 
 # Convert all files in this directory that have a .md suffix
 SOURCE_DOCS := $(wildcard *.md)
+SOURCE_DOCS := $(filter-out README.md, $(SOURCE_DOCS))
 
 EXPORTED_DOCS=\
  $(SOURCE_DOCS:.md=.pdf) \
